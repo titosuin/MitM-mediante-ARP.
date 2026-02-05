@@ -1,9 +1,10 @@
-Estudiante: Martin Alexander Perez Moya
-Matrícula: 2024-2295
-Asignatura: Seguridad en Redes
-Fecha: Febrero 2026
 
-Link del video: https://youtu.be/s6Emg7BInSg
+**Estudiante:** Martin Alexander Perez Moya  
+**Matrícula:** 2024-2295  
+**Asignatura:** Seguridad en Redes  
+**Fecha:** Febrero 2026
+
+**Link del video**: https://youtu.be/s6Emg7BInSg
  
  ## 1. Descripción y Topología del Escenario
 
@@ -13,7 +14,7 @@ El laboratorio se ha desplegado en un entorno virtualizado utilizando **GNS3**, 
 * **Segmentación de Red:** Se ha configurado la **VLAN 2295** (basada en los últimos 4 dígitos de la matrícula).
 * **Direccionamiento IP:** Subred `10.22.95.0/24`.
 * **Infraestructura:**
-    * **Gateway (Router Cisco IOU L3):** Configurado como *Router-on-a-Stick* en la interfaz `e0/1.2295` con IP `10.22.95.1`.
+    * **Gateway (Router Cisco IOU L3):** Configurado como *Router-on-a-Stick* en la interfaz `e0/0.2295` con IP `10.22.95.1`.
     * **Switch (Cisco IOU L2):** Puertos de acceso configurados en la VLAN 2295.
 * **Actores:**
     * **Atacante:** Kali Linux (IP asignada por DHCP: `10.22.95.4`).
@@ -21,15 +22,14 @@ El laboratorio se ha desplegado en un entorno virtualizado utilizando **GNS3**, 
 
 <img width="641" height="712" alt="image" src="https://github.com/user-attachments/assets/07ad4a81-ae2d-4e63-ad94-2061a26abefb" />
 
-Dispositivo,Interfaz,Dirección IP,Máscara de Subred,Gateway Predeterminado:
+### Tabla de Direccionamiento
 
-RouterGateway,e0/0.2295,10.22.95.1,255.255.255.0 (/24),N/A
-
-Switch L2,VLAN 2295,10.22.95.2 (Gestión),255.255.255.0 (/24),10.22.95.1
-
-Kali Linux (Atacante),eth0,10.22.95.4/255.255.255.0 (/24),10.22.95.1
-
-PC1 (Víctima),eth0, 10.22.95.3/255.255.255.0 (/24),10.22.95.1
+| Dispositivo | Interfaz | Dirección IP | Máscara de Subred | Gateway Predeterminado |
+| :--- | :--- | :--- | :--- | :--- |
+| **Router Gateway** | e0/0.2295 | 10.22.95.1 | 255.255.255.0 (/24) | N/A |
+| **Switch L2** | VLAN 2295 | 10.22.95.2 (Gestión) | 255.255.255.0 (/24) | 10.22.95.1 |
+| **Kali Linux (Atacante)** | eth0 | 10.22.95.4 | 255.255.255.0 (/24) | 10.22.95.1 |
+| **PC1 (Víctima)** | eth0 | 10.22.95.3 (DHCP) | 255.255.255.0 (/24) | 10.22.95.1 |
 
 ---
 
