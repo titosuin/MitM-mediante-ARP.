@@ -60,6 +60,9 @@ El script `ataque_arp.py` intercepta el tráfico confidencial entre la víctima 
 
 <img width="380" height="171" alt="image" src="https://github.com/user-attachments/assets/0e2413cc-e7fc-488f-b6f8-6c163e179a7e" />
 
+<img width="1257" height="629" alt="image" src="https://github.com/user-attachments/assets/483f5e27-6b16-4c97-aaae-5a22b8371e34" />
+
+
 
 ---
 
